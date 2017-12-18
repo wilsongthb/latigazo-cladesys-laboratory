@@ -16,6 +16,18 @@ class ClinicDoctors extends Migration
         Schema::create('clinic_doctors', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('flagstate')->default(true);
+
+            $table->string('names');
+            $table->string('fam_names', 255);
+            $table->char('dni', 10);
+            $table->string('email')->nulllable();
+            $table->string('phone')->nullable();
+
+            $table->text('specialties')->nullable();
         });
     }
 
