@@ -12,9 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('laboratory');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('laboratory', 'Laboratory\LaboratoryViewsController@index')->middleware('auth');
+
+Route::group(['prefix' => 'rsc'], function(){
+    Route::resource('laboratory-jobs', 'Laboratory\LaboratoryJobsController');
+    Route::resource('laboratory-job-types', 'Laboratory\LaboratoryJobTypesController');
+    Route::post('laboratory-job-add-status', 'Laboratory\LaboratoryJobStatusController@newStatus');
+});
