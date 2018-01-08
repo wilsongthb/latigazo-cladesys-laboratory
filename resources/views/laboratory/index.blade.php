@@ -9,6 +9,7 @@
 
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/bootstrap.lumen.css')}}">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,22 +38,32 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Tipo</th>
+                                        <th class="hidden-xs">ID</th>
+                                        <th class="hidden-xs">Tipo</th>
                                         <th>Descripcion</th>
-                                        <th>Fecha de encargo</th>
-                                        <th>Fecha de entrega</th>
+                                        <th class="hidden-xs">Fecha de encargo</th>
+                                        <th class="hidden-xs">Fecha de entrega</th>
                                         <!-- <th></th> -->
                                         <th class="col-lg-4"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="d in LaboratoryJobs.data.data | filter: LaboratoryJobs.search">
-                                        <td ng-bind="d.id"></td>
-                                        <td ng-bind="d.type"></td>
-                                        <td ng-bind="d.description"></td>
-                                        <td ng-bind="d.charge"></td>
-                                        <td ng-bind="d.deliver"></td>
+                                        <td class="hidden-xs" ng-bind="d.id"></td>
+                                        <td class="hidden-xs" ng-bind="d.type"></td>
+                                        <td class="col-xs-6">
+                                            <span class="visible-xs">
+                                                <span class="label label-default">ID: @{{d.id}} </span>
+                                            </span>
+                                            @{{d.description}}
+                                            <span class="visible-xs">
+                                                <span class="label label-primary">Tipo: @{{d.type}} </span>
+                                                <span class="label label-default">Encargo: @{{d.charge}} </span>
+                                                <span class="label label-default">Entrega: @{{d.deliver}} </span>
+                                            </span>
+                                        </td>
+                                        <td class="hidden-xs" ng-bind="d.charge"></td>
+                                        <td class="hidden-xs" ng-bind="d.deliver"></td>
                                         <!-- <td></td> -->
                                         <td>
                                             <div class="form-inline">
